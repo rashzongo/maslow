@@ -1,0 +1,6 @@
+[submodule "frontend-maslow"]
+	path = frontend-maslow
+	url = https://gitlab.com/mbds/maslow/frontend-maslow.git
+[submodule "backend-maslow"]
+	path = backend-maslow
+	url = https://gitlab.com/mbds/maslow/backend-maslow.git
