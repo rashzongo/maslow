@@ -1,0 +1,43 @@
+version: '3.5'
+
+services:
+  db-mongo:
+    image: mongo
+    volumes:
+      - mongo-data-volume:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      backend:
+        aliases:
+          - db-mongo
+  
+  api-maslow:
+    build:
+      context: backend-maslow
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    links:
+      - db-mongo
+    networks:
+      - backend
+      - fontend
+  
+  fontend-maslow:
+    build:
+      context: fontend-maslow
+      dockerfile: Dokerfile
+    ports:
+      - "8100:8100"
+    networks:
+      - fontend
+
+volumes:
+  mongo-data-volume:
+
+networks:
+  backend:
+    name: backend-network
+  fontend:
+    name: frontend-network
