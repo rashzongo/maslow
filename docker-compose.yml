@@ -12,7 +12,7 @@ services:
         aliases:
           - db-mongo
   
-  api-maslow:
+  backend:
     build:
       context: backend-maslow
       dockerfile: Dockerfile
@@ -22,16 +22,16 @@ services:
       - db-mongo
     networks:
       - backend
-      - fontend
+      - frontend
   
-  fontend-maslow:
+  frontend:
     build:
-      context: fontend-maslow
-      dockerfile: Dokerfile
+      context: frontend-maslow
+      dockerfile: Dockerfile
     ports:
       - "8100:8100"
     networks:
-      - fontend
+      - frontend
 
 volumes:
   mongo-data-volume:
@@ -39,5 +39,5 @@ volumes:
 networks:
   backend:
     name: backend-network
-  fontend:
+  frontend:
     name: frontend-network
